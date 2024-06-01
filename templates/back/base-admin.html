@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'includes/head.html' %}
+    <link href="{% static 'css/admin-css.css' %}" rel="stylesheet">
+    <title>Administration - Ecom</title>
+</head>
+<body>
+
+    {% if request.user.is_authenticated %}
+    {% if request.user.is_superuser %}
+    <div class="wrapper dashboard">
+        <div class="sidebar hide">
+            <div class="sidebar-brand">
+                <a href="{% url 'back:dashboard' %}">Admin</a>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><a href="{% url 'back:dashboard' %}" class="nav-link {% if request.path == '/back/' %}active{% endif %}">Tableau de bord</a></li>
+                <li class="nav-item"><a href="{% url 'back:categories' %}" class="nav-link {% if request.path == '/back/categories/' %}active{% endif %}">Categories</a></li>
+                <li class="nav-item"><a href="{% url 'back:sub-categories' %}" class="nav-link {% if request.path == '/back/sub-categories/' %}active{% endif %}">Sous categories</a></li>
+                <li class="nav-item"><a href="{% url 'back:products' %}" class="nav-link {% if request.path == '/back/products/' %}active{% endif %}">Produits</a></li>
+                <li class="nav-item"><a href="{% url 'other:voyage' %}" class="nav-link {% if request.path == '/back/voyage/' %}active{% endif %}">Voyage</a></li>
+            </ul>
+        </div>
+
+        <div class="main-admin full">
+            <div class="top">
+                {% if messages %}
+                {% for m in messages %}
+                <div class="alert alert-success m-0">{{m}}</div>
+                {% endfor %}
+                {% endif %}
+                <div class="row justify-content-between m-0 top-links">
+                    <div class="col-auto">
+                        <span class="d-sm-none p-2" id="admin-menu-bars"><i class="fa fa-bars"></i></span>
+                        <span><a href="{% url 'back:dashboard' %}">Administration</a> - <a href="{% url 'home:home' %}">Revenir sur le site</a></span>
+                    </div>
+                    <div class="col-auto">
+                        <span>{{request.user.email}}</span> &nbsp;-&nbsp;
+                        <a href="{% url 'accounts:logout' %}">Deconnexion</a>
+                    </div>
+                </div>
+                <hr class="m-0">
+                <div class="title">
+                    <h6>Tableau de bord</h6>
+                </div>
+                <hr class="m-0">
+            </div>
+
+            <div class="content p-3">
+                {% block content %}{% endblock %}
+            </div>
+
+            <div class="admin-footer">
+                <hr class="m-0">
+                <div class="d-flex justify-content-between p-3">
+                    <div class="left-side">Administration &copy;2023 Tout droits reservés.</div>
+                    <div class="right-side">Réalisé par <u><a href="#">GhennySoft</a></u></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="py-5 text-center">
+            <h1 class="text-muted">Vous n'êtes pas autorisé à accéder à cette page !</h1>
+            <a href="{% url 'home:home' %}" style="background-color: red; color: #fff; padding: 3px 15px; font-size: 0.9rem; border-radius: 8px;">Retour à l'accueil</a>
+        </div>
+    {% endif %}
+    {% else %}
+        <div class="py-5 text-center">
+            <h1 class="text-muted">Veillez vous connecter pour accéder à cette page !</h1>
+            <a href="{% url 'accounts:login' %}" style="background-color: red; color: #fff; padding: 3px 15px; font-size: 0.9rem; border-radius: 8px;">Se connecter</a>
+        </div>
+    {% endif %}
+
+    {% include 'includes/js.html' %}
+</body>
+</html>

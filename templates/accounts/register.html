@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+      <title>Q-Cherche - Inscription</title>
+      {% include 'includes/head.html' %}
+   </head>
+   <body>
+
+	  <div class="container h-100 mb-3">
+      <div class="log">
+         <h1>Q-CHERCHE</h1>
+         <form method="post">
+            {% csrf_token %}
+            <h2>
+               <span>Créer un compte</span> <br>
+               <a href="{% url 'accounts:login' %}" style="font-size: 0.8rem; font-weight: 500;"><u>se connecter</u></a> <span style="font-size: 0.9rem; font-weight: 500;">|</span> <a href="{% url 'home:home' %}" style="font-size: 0.8rem; font-weight: 500;"><u>accueil</u></a>
+            </h2>
+            
+            {% if messages %}
+            {% for m in messages %}
+            <p style="font-size: 0.9rem; font-weight: 500; background-color: red; padding: 5px; margin: 0px; color: #fff;">{{m}}</p>
+            {% endfor %}
+            {% endif %}
+
+            <label for="first_name">Prénom <br><input type="text" name="first_name" required autofocus></label>
+            <label for="last_name">Nom <br><input type="text" name="last_name" required></label>
+            <label for="email">Email <br><input type="email" name="email" required></label>
+            <label for="Téléphone">Téléphone <br><input type="text" name="phone" required></label>
+            <label for="password">Mot de passe <br><input type="password" name="password" required></label><br>
+            <button type="submit" class="btn mt-3">Créer un compte</button>
+         </form>
+       </div>
+	  </div>
+
+      {% include 'includes/js.html' %}
+   </body>
+</html>

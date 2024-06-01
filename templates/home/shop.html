@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block banner %}
+	<div class="text-center py-3">
+		<h4 style="font-size: 2rem; font-weight: 700; color: white;">Tous les produits</h4>
+	</div>
+{% endblock %}
+
+{% block content %}
+       <div class="items my-5">
+         <!-- <h2>Nouveaux articles</h2>
+          <hr class="mt-2"> -->
+         <div class="row pt-5">
+          {% for prod in products %}
+          <div class="col-6 col-md-4 col-lg-3">
+             <div class="item mb-3">
+                <img src="{{prod.image.url}}" alt="{{prod.name}}" width="100%">
+                <p class="infos m-0"><a href="{% url 'home:detail-product' prod.prod_id %}">{{prod.name}}</a></p>
+                <div class="d-flex justify-content-between align-items-center">
+                   <span class="price">{{prod.price}}$</span>
+                   
+                   <input type="hidden" class="prod-qty-{{prod.id}}" value="1">
+                   <input type="hidden" class="prod-name-{{prod.id}}" value="{{prod.name}}">
+                   <input type="hidden" class="prod-id-{{prod.id}}" value="{{prod.id}}">
+                   <input type="hidden" class="prod-pid-{{prod.id}}" value="{{prod.prod_id}}">
+                   <input type="hidden" class="prod-price-{{prod.id}}" value="{{prod.price}}">
+                   <input type="hidden" class="prod-image-{{prod.id}}" value="{{prod.image.url}}">
+                   <button type="submit" class="add-to-cart-btn" data-index="{{prod.id}}"><i class="fa fa-shopping-cart">&nbsp; Ajouter</i></button>
+                </div>
+             </div>
+          </div>
+          {% endfor %}
+         </div>
+       </div>
+{% endblock %}

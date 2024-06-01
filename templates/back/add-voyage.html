@@ -1,0 +1,21 @@
+{% extends 'back/base-admin.html' %}
+{% block content %}
+                <div class="table-responsive">
+                    <form method="post" enctype="multipart/form-data" class="add-form">
+                        {% csrf_token %}
+                        <table class="w-100">
+                            <tr>
+                                <td><label for="id_name">Nom</label></td>
+                                <td>{{form.name}}</td>
+                            </tr>
+                            <tr>
+                                <td><label for="id_image">Image</label></td>
+                                <td>{{form.image}}</td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit">Ajouter</button></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+{% endblock %}

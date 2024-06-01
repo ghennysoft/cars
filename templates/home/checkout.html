@@ -1,0 +1,53 @@
+{% extends 'home/base.html' %}
+	{% load static %}
+
+{% block banner %}
+	<div class="text-center py-3">
+		<h4 style="font-size: 2rem; font-weight: 700; color: white;">Confirmation</h4>
+	</div>
+{% endblock %}
+
+{% block content %}
+       <div class="row justify-content-between">
+		<div class="col-12 mt-2">
+			<h2>Adresse de livraison</h2>
+		</div>
+		<div class="col-lg-6 pt-1 pb-5">
+			<form action="{% url 'home:checkout' %}" method="post">
+				{% csrf_token %}
+				<input type="text" name="first_name" class="form-control mb-3" placeholder="Prenom" required>
+				<input type="text" name="last_name" class="form-control mb-3" placeholder="Nom" required>
+				<input type="text" name="phone" class="form-control mb-3" placeholder="Téléphone" required>
+				<input type="text" name="city" class="form-control mb-3" placeholder="Ville" required>
+				<input type="text" name="adress" class="form-control mb-3" placeholder="Adresse" required>
+				<button type="submit" style="display: block; width: 100%; text-align: center; background-color: red; color: #fff; padding: 3px 15px; font-size: 0.9rem; border-radius: 8px;">Commander</button>
+			</form>
+		</div>
+
+		<div class="col-lg-5">
+			<div class="cart shadow-sm">
+				<table class="table p-2">
+					{% for p_id, item in cart_data.items %}
+					<tr>
+						<td>
+							<div class="d-flex align-items-center">
+								<img src="{{item.image}}" width="45px" alt="{{item.name}}" class="mr-3">
+								<a href="{% url 'home:detail-product' item.pid %}">{{item.name}}</a>
+							</div>
+						</td>
+						<td>{{item.price}}$</td>
+						<td>x{{item.qty}}</td>
+						<td>{% widthratio item.price 1 item.qty %}$</td>
+					</tr>
+					{% endfor %}
+					<tr>
+						<td></td>
+						<td></td>
+						<td><strong>Total</strong></td>
+						<td><strong>{{total_amt}}$</strong></td>
+					</tr>
+				</table>			
+		   </div>
+		</div>
+	   </div>
+{% endblock %}

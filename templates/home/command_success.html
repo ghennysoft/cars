@@ -1,0 +1,15 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block banner %}
+	<div class="text-center py-3">
+		<h4 style="font-size: 2rem; font-weight: 700; color: white;">Votre panier</h4>
+	</div>
+{% endblock %}
+
+{% block content %}
+    <div class="cart">
+		<h2 class="alert alert-success p-3 text-center">Votre commande a été envoye avec succèss</h2>
+		<a href="{% url 'home:shop' %}" class="btn btn-danger mt-3 px-5">Conrinuer vos achats</a>
+	</div>
+{% endblock %}

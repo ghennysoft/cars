@@ -1,0 +1,20 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block banner %}
+<div class="text-center py-3">
+    <h4 style="font-size: 2rem; font-weight: 700; color: white;">Sociétés d'Aviation</h4>
+</div>
+{% endblock %}
+
+{% block content %}
+			<div class="row py-5 align-items-center">
+				{% for item in societes %}
+				<div class="col-md-6 col-lg-3">
+					<a href="{% url 'other:trajets' item.slug %}">
+						<img src="{{item.image.url}}" alt="{{item.name}}">
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+{% endblock %}

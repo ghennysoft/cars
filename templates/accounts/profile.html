@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block banner %}
+	<div class="text-center py-3">
+		<h4 style="font-size: 2rem; font-weight: 700; color: white;">Profil</h4>
+	</div>
+{% endblock %}
+
+{% block content %}
+      <div class="row py-5 my-5 profile">
+         <div class="col-md-4 left">
+            <ul class="list-group">
+               <div class="list-group-item"><a href="#">Infos personnelles</a></div>
+               <div class="list-group-item"><a href="#">Mes commandes</a></div>
+            </ul>
+         </div>
+         <div class="col-md-8">
+            <h4>Infos personnelles</h4>
+            <table>
+               <tr>
+                  <td>Prenom</td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{request.user.first_name}}</td>
+               </tr>
+               <tr>
+                  <td>Nom</td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{request.user.last_name}}</td>
+               </tr>
+               <tr>
+                  <td>Email</td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{request.user.email}}</td>
+               </tr>
+               <tr>
+                  <td>Téléphone</td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{request.user.phone}}</td>
+               </tr>
+            </table>
+         </div>
+      </div>
+{% endblock %}

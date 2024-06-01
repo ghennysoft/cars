@@ -1,0 +1,33 @@
+{% extends 'back/base-admin.html' %}
+{% block content %}
+                <div class="the-container">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="the-container-title m-0">Sous-categories</h4>
+                        <a href="{% url 'back:add-sub-category' %}" class="btn btn-info btn-sm mx-3 mt-3">Ajouter</a>
+                    </div>
+                    <div class="table-responsive px-3 mt-4">
+                        <table class="table border bg-white">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Categorie</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sub in subcategories %}
+                              <tr>
+                                  <td>{{sub.name}}</td>
+                                  <td>{{sub.category.name}}</td>
+                                  <td>
+                                    <a href="{% url 'back:update-sub-category' sub.slug %}" class="text-primary"><i class="fa fa-edit">edit</i></a> &nbsp;
+                                    <a href="{% url 'back:delete-sub-category' sub.slug %}" class="text-danger"><i class="fa fa-trash">delete</i></a>
+                                  </td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    
+{% endblock %}

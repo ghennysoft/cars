@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block banner %}
+<div class="text-center py-3">
+    <h4 style="font-size: 2rem; font-weight: 700; color: white;">Sociétés d'Aviation</h4>
+</div>
+{% endblock %}
+
+{% block content %}
+			<div class="row py-5 align-items-center">
+				{% for item in trajets %}
+				<div class="col-lg-6 col-xl-4 mb-3">
+					<div class="shadow text-center p-3">
+						<h5>{{item.depart}} -----------> {{item.destination}}</h5>
+						<h2>{{item.prix}}$</h2>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+{% endblock %}

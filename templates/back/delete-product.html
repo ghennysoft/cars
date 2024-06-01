@@ -1,0 +1,17 @@
+{% extends 'back/base-admin.html' %}
+{% block content %}
+                <div class="the-container">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="the-container-title m-0">Supprimer l'article</h4>
+                    </div>
+                    <div class="table-responsive px-3 mt-4 mb-2">
+                        <form method="post" enctype="multipart/form-data" class="add-form">
+                            {% csrf_token %}
+                            <h5>Voulez-vous vraiment supprimer <strong>{{object.name}}</strong> ?</h5>
+                            <button type="submit">Supprimer</button>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+    
+{% endblock %}

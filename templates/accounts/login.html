@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+      <title>Q-Cherche - Connexion</title>
+      {% include 'includes/head.html' %}
+   </head>
+   <body>
+
+	  <div class="container h-100 mb-3">
+      <div class="log">
+         <h1>Q-CHERCHE</h1>
+         <form method="post">
+            {% csrf_token %}
+            <h2>
+               <span>Connexion</span> <br>
+               <a href="{% url 'accounts:register' %}" style="font-size: 0.8rem; font-weight: 500;"><u>ou s'inscrire</u></a> <span style="font-size: 0.9rem; font-weight: 500;">|</span> <a href="{% url 'home:home' %}" style="font-size: 0.8rem; font-weight: 500;"><u>accueil</u></a>
+            </h2>
+            
+            {% if messages %}
+            {% for m in messages %}
+            <p style="font-size: 0.9rem; font-weight: 500; background-color: red; padding: 5px; margin: 0px; color: #fff;">{{m}}</p>
+            {% endfor %}
+            {% endif %}
+            
+            <label for="email">Email <br><input type="email" name="email_phone" required autofocus></label>
+            <label for="password">Mot de passe <br><input type="password" name="password" required></label><br>
+            <a href="#" style="font-size: 0.8rem;"><u>Mot de passe oublié ?</u></a> <br>
+            <button type="submit" class="btn mt-3">Connexion</button>
+         </form>
+       </div>
+	  </div>
+
+      {% include 'includes/js.html' %}
+   </body>
+</html>

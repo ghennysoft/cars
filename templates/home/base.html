@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+      <title>Q-Cherche</title>
+      {% include 'includes/head.html' %}
+   </head>
+   <body>
+      <!-- banner bg main start -->
+      <div class="banner_bg_main">
+         <!-- header top section start -->
+		 <div class="header_section_top mb-md-5">
+         <div class="container">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="custom_menu">
+                        <ul>
+                           <li><a href="{% url 'home:home' %}"><img src="/static/images/logo.jpeg" class="brand" alt="logo" width="20px"> Company</a></li>
+                           <div class="icones">
+                           <div class="d-flex align-items-center d-md-none">
+                              <div class="position-relative">
+                                 <a href="{% url 'home:cart' %}" class="cart-items-count" style="position: absolute; right: 4px; top: -7px; width: 18px; height: 18px; text-align: center; padding: 0px 0px 18px; background-color: #fff; border: 1px solid #2b2a29; border-radius: 50%; font-size: 0.7rem;">
+                                    {% if cart_data %}
+                                    {{total_cart_items}}
+                                    {% else %}
+                                    0
+                                    {% endif %}
+                                 </a>
+                                 <a href="{% url 'home:cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>  &nbsp;
+                              </div>
+                              {% if request.user.is_authenticated %}
+                                 <input type="hidden" class="user-email" value="{{request.user.email}}">
+                                 <a href="{% url 'accounts:profile' %}"><span class="profile-icone" style="font-size: 1.1rem; font-weight: 450; background-color: #fff; color: red; padding: 0px 6px; border-radius: 50%; margin-top: -10px;"></span></a>
+                              {% else %}
+                                 <a href="{% url 'accounts:login' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
+                              {% endif %}
+                              <span class="toggle_icon" onclick="openNav()"><i class="fa fa-bars py-2"></i></span>
+                           </div>
+                           </div>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+		 <br><br>
+		 <!-- header section start -->
+         <div class="header_section">
+            <div class="container">
+               <div class="containt_main">
+                  <!-- Responsive menu -->
+                  <div id="mySidenav" class="sidenav">
+                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                     <a href="{% url 'home:home' %}">Accueil</a>
+                     <a href="{% url 'home:shop' %}">A propos</a>
+                     <!-- <a href="{% url 'other:immobilier' %}">Immobilier</a>
+                     <a href="{% url 'other:societe_aviation' %}">Voyage</a>
+                     <a href="{% url 'other:livraison' %}">Livraison</a>
+                     <a href="{% url 'other:decoration' %}">Décoration</a>
+                     <a href="{% url 'other:evenement' %}">Evenements</a>
+                     <a href="{% url 'other:assurance' %}">Assurance</a>
+                     <a href="{% url 'other:mecanique' %}">Mécanique</a>
+                     <a href="{% url 'other:formation' %}">Formations</a> -->
+                  </div>
+
+                  <div class="main">
+                     <!-- Another variation with a button -->
+                     <form action="{% url 'home:search' %}" method="get" class="input-group">
+                        <input type="text" class="form-control" placeholder="Que souhaitez-vous ?" name="q" value="{% if query %}{{query}}{% endif %}">
+                        <div class="input-group-append">
+                           <button class="btn btn-secondary" type="submit" style="background-color: #333">
+                           	<i class="fa fa-search"></i>
+                           </button>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="header_box">
+                     <div class="login_menu d-none d-md-block">
+                        <ul>
+                           <li class="position-relative">
+                              <a href="{% url 'home:cart' %}" class="cart-items-count" style="position: absolute; right: 0px; top: 0px; width: 18px; height: 18px; text-align: center; padding: 0px 0px 18px; background-color: #fff; color: red; border: 1px solid red; border-radius: 50%; font-size: 0.7rem;">
+                                 {% if cart_data %}
+                                 {{total_cart_items}}
+                                 {% else %}
+                                 0
+                                 {% endif %}
+                              </a>
+                              <a href="{% url 'home:cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>  &nbsp;
+                           </li>
+                           {% if request.user.is_authenticated %}
+                           <li>
+                              <div class="dropdown m-0">
+                                 <button class="btn text-white p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <input type="hidden" class="user-email" value="{{request.user.email}}">
+                                    <span class="profile-icone" style="font-size: 1.1rem; font-weight: 450; background-color: #fff; color: red; padding: 0px 6px; border-radius: 50%; margin-right: -7px;"></span>
+                                 </button>
+                                 <div class="dropdown-menu" style="background-color: #30302e; right: 0px;" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" style="padding: 5px 15px; text-transform: capitalize; font-size: 1rem;" href="{% url 'accounts:profile' %}">Profile</a>
+                                    {% if request.user.is_superuser %}
+                                    <a class="dropdown-item" style="padding: 5px 15px; text-transform: capitalize; font-size: 1rem;" href="{% url 'back:dashboard' %}">Administration</a>
+                                    {% endif %}
+                                    <a class="dropdown-item" style="padding: 5px 15px; text-transform: capitalize; font-size: 1rem;" href="{% url 'accounts:logout' %}">Se deconnecter</a>
+                                 </div>
+                               </div>
+                           </li>
+                           {% else %}
+                           <li>
+                              <a href="{% url 'accounts:login' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
+                           </li>
+                           {% endif %}
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- header section end -->
+         {% block banner %}{% endblock %}
+      </div>
+      <!-- banner bg main end -->
+
+	  <div class="container">
+      {% block content %}{% endblock %}
+	  </div>
+      
+      <!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="footer_logo"><a href="index.html" style="font-size: 3rem; color: #fff;">Company</a></div>
+            <hr style="background-color: #f2f2f6; width: 60%; margin: 15px auto 0px;">
+         </div>
+      </div>
+      <!-- footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <p class="copyright_text">© 2023 Tout droits reservé.</p>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      {% include 'includes/js.html' %}
+   </body>
+</html>

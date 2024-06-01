@@ -1,0 +1,37 @@
+{% extends 'back/base-admin.html' %}
+{% block content %}
+                <div class="table-responsive">
+                    <form method="post" enctype="multipart/form-data" class="add-form">
+                        {% csrf_token %}
+                        <table class="w-100">
+                            <tr>
+                                <td><label for="id_name">Nom</label></td>
+                                <td>{{form.name}}</td>
+                            </tr>
+                            <tr>
+                                <td><label for="id_image">Image</label></td>
+                                <td>{{form.image}}</td>
+                            </tr>
+                            <tr>
+                                <td><label for="id_category">Catégorie</label></td>
+                                <td>{{form.subcategory}}</td>
+                            </tr>
+                            <tr>
+                                <td class="area"><label for="id_description">Détails</label></td>
+                                <td>{{form.description}}{{form.media}}</td>
+                            </tr>
+                            <tr>
+                                <td><label for="id_price">Prix</label></td>
+                                <td>{{form.price}}</td>
+                            </tr>
+                            <tr>
+                                <td><label for="id_old_price">Ancien prix(facultatif)</label></td>
+                                <td>{{form.old_price}}</td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit">Modifier</button></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+{% endblock %}

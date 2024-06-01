@@ -1,0 +1,70 @@
+{% extends 'back/base-admin.html' %}
+{% block content %}
+                <div class="row m-0 stats my-3">
+                    <div class="col-md-6 col-lg-3 px-1">
+                        <div class="card bg-primary text-white p-3 mb-2">
+                            <h4>{{categories}}</h4>
+                            <span>Categories</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 px-1">
+                        <div class="card bg-info text-white p-3 mb-2">
+                            <h4>{{articles}}</h4>
+                            <span>Articles</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 px-1">
+                        <div class="card bg-danger text-white p-3 mb-2">
+                            <h4>{{commandes}}</h4>
+                            <span>Commandes</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 px-1">
+                        <div class="card bg-warning text-white p-3 mb-2">
+                            <h4>{{users}}</h4>
+                            <span>Utilisateurs</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="the-container">
+                    <h4 class="the-container-title">Utilisateurs</h4>
+                    <div class="table-responsive px-3 mt-4">
+                        <table class="table border bg-white">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Email</th>
+                                    <th>Prénom</th>
+                                    <th>Nom</th>
+                                    <th>Inscrit le</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                  <td>1</td>
+                                  <td>administrateur@gmail.com</td>
+                                  <td>Medi</td>
+                                  <td>Kings</td>
+                                  <td>03/01/2023 10:03:07</td>
+                              </tr>
+                              <tr>
+                                  <td>2</td>
+                                  <td>jeremie@gmail.com</td>
+                                  <td>Jéremie</td>
+                                  <td>Kobo</td>
+                                  <td>07/01/2023 15:46:20</td>
+                              </tr>
+                              <tr>
+                                  <td>3</td>
+                                  <td>sarah@gmail.com</td>
+                                  <td>Sarah</td>
+                                  <td>Ntumba</td>
+                                  <td>07/01/2023 21:17:09</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    
+{% endblock %}

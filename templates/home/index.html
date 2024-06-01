@@ -1,0 +1,56 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block banner %}
+	{% include 'includes/banner.html' %}
+{% endblock %}
+
+{% block content %}
+       <div class="categories">
+         <h2>Top catégories</h2>
+         <div class="table-responsive">
+            <table class="table m-0">
+               <tr>
+                  {% for cat in brands %}
+                  <td>
+                     <div class="category text-center">
+                        <a href="#">
+							<img src="{{cat.image.url}}" alt="{{cat.name}}">
+                        	<h5 class="mt-2">{{cat.name}}</h5>
+						</a>
+                     </div>
+                  </td>
+                  {% endfor %}
+               </tr>
+              </table>
+         </div>
+       </div>
+       
+       <!-- <div class="defile text-white pt-2 px-2"><marquee behavior="" direction="">Retrouvez tout ce que vous cherchez sur Q-Cherche à des prix défiants toute concurrence</marquee></div> -->
+       
+       <div class="items my-5">
+         <h2>Ajoutés recement</h2>
+          <hr class="mt-2">
+         <div class="row m-0">
+          {% for prod in products %}
+          <div class="col-6 col-md-4 col-lg-3">
+             <div class="item mb-3">
+                <img src="{{prod.image.url}}" alt="{{prod.name}}" width="100%">
+                <p class="infos m-0"><a href="#">{{prod.name}}</a></p>
+                <div class="d-flex justify-content-between align-items-center">
+                   <span class="price">{{prod.price}}$</span>
+                   
+                   <input type="hidden" class="prod-qty-{{prod.id}}" value="1">
+                   <input type="hidden" class="prod-name-{{prod.id}}" value="{{prod.name}}">
+                   <input type="hidden" class="prod-id-{{prod.id}}" value="{{prod.id}}">
+                   <input type="hidden" class="prod-pid-{{prod.id}}" value="{{prod.prod_id}}">
+                   <input type="hidden" class="prod-price-{{prod.id}}" value="{{prod.price}}">
+                   <input type="hidden" class="prod-image-{{prod.id}}" value="{{prod.image.url}}">
+                   <button type="submit" class="add-to-cart-btn" data-index="{{prod.id}}"><i class="fa fa-shopping-cart">&nbsp; Ajouter</i></button>
+                </div>
+             </div>
+          </div>
+          {% endfor %}
+         </div>
+       </div>
+{% endblock %}

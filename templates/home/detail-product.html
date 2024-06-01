@@ -1,0 +1,42 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block banner %}
+	<div class="text-center py-3">
+		<h4 style="font-size: 2rem; font-weight: 700; color: white;">Detail Produit</h4>
+	</div>
+{% endblock %}
+
+{% block content %}
+       <div class="detail-product">
+         <div class="row pt-5">
+			<div class="col-md-5 text-center">
+				<img src="{{product.image.url}}" alt="{{product.name}}" class="p-2" style="object-fit: contain; background-color: #f5f5f6;">
+			</div>
+			<div class="col-md-7">
+				<h3>{{product.name}}</h3>
+				<h2 style="color: #f00; font-size: 2.5rem;"><b>${{product.price}}</b></h2>
+				<table>
+					<tr>
+						<td>Categorie</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {{product.subcategory.name}}</td>
+					</tr>
+					<tr>
+						<td>Disponibilité</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : En stock</td>
+					</tr>
+				</table>
+				<span>...................................................................................................</span>
+				{{product.description|safe|truncatewords:30}}
+                   
+				<input type="number" class="prod-qty-{{product.id}}" value="1">
+				<input type="hidden" class="prod-name-{{product.id}}" value="{{product.name}}">
+				<input type="hidden" class="prod-id-{{product.id}}" value="{{product.id}}">
+				<input type="hidden" class="prod-pid-{{product.id}}" value="{{product.prod_id}}">
+				<input type="hidden" class="prod-price-{{product.id}}" value="{{product.price}}">
+				<input type="hidden" class="prod-image-{{product.id}}" value="{{product.image.url}}"> <br><br>
+				<button type="submit" class="add-to-cart-btn" data-index="{{product.id}}" style="background-color: red; color: #fff; padding: 3px 6px; font-size: 0.7rem; border-radius: 8px;"><i class="fa fa-shopping-cart">&nbsp; Ajouter</i></button>
+			</div>
+		 </div>
+       </div>
+{% endblock %}
